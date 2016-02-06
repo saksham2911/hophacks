@@ -1,0 +1,3 @@
+Accel.on('tap', function(e) {
+  console.log('Tap event on axis: ' + e.axis + ' and direction: ' + e.direction);
+});

@@ -21,3 +21,15 @@ var fruitMenu = new UI.Menu({
   }]
 });
 fruitMenu.show();
+// Add a click listener for select button click
+fruitMenu.on('select', function(event) {
+
+  // Show a card with clicked item details
+  var detailCard = new UI.Card({
+    title: fruits[event.itemIndex].title,
+    body: fruits[event.itemIndex].subtitle
+  });
+
+  // Show the new Card
+  detailCard.show();
+});

@@ -1,61 +1,85 @@
 var UI = require('ui');
 var Accel = require('ui/accel');
 
-var dateTopics = ['Spirit animal?', 'What is your story?', 'What does your name mean to you?', 'Where would you teleport to?', 'Strangest thing about where you grew up?', 'Favorite cuisine?', 'Least favorite novel?', 'Favorite movie?', 'Ideal job?'];
-var parentTopics = ['Places you have travelled', 'Interesting books', 'Hobbies you have', 'Sports teams', 'Favorite historical figures', 'Family vacations', 'Family origins', 'Favorite plays', 'Favorite foods'];
-var partyTopics = ['New restaurants', 'What do you do for fun?', 'Who would you dedicate a book to?', 'TV Shows', 'What is your favorite music genre', 'Movies','Social media', 'Celebrities','Favorite foods']; 
-var randomNum = Math.floor(Math.random() * 8);
+var dateTopics = ['Spirit animal?', 'What is your story?', 'What does your name mean to you?', 
+                  'Where would you teleport to?', 'Strangest thing about where you grew up?', 
+                  'Favorite cuisine?', 'Least favorite novel?', 'Favorite movie?', 'Ideal job?'];
+var parentTopics = ['What is the most interesting place you have visited?', 
+                    'Most thought-provoking book you have read?', 'Most rewarding hobby?', 
+                    'What sport do you think is the most worthwhile?', 'Who is your favorite historical figure?', 
+                    'Favorite family vacation?', 'What are the familys origins', 'Talk about your favorite plays', 
+                    'Favorite foods'];
+var partyTopics = ['Dinner in the pitch dark or on top of Mt.Everest?', 'Rather be a goose or a horse?', 
+                   'Who would you dedicate a book to?', 'TV Shows (Netflix, Hulu, all of it?)', 
+                   'Touring with the Beatles or Taylor Swift?', 'Acting in an Oscar Winner or Directing an Oscar Winner?',
+                   'Whats the best prank you have pulled?', 'Celebrity Crushes','Favorite foods'];
+var professionalTopics = ['Most challenging moment of your career?','What work makes you passionate?',
+                          'Who do you aspire most to be like?','Best piece of advice?',
+                          'Whats a time your beliefs were fundamentally challenged?','How did you end up where you are?',
+                          'How do you keep yourself motivated?','What has made you angry in the workplace?',
+                          'How do you develop strong working relationships?'];
+
+
+  
 Accel.on('tap', function(e) {
+var randomNum = Math.floor(Math.random() * 8);
+  
   if(e.direction == 1){
-  randomNum = Math.floor(Math.random() * 8);
+ randomNum = Math.floor(Math.random() * 8);
   } else if(e.direction == -1){
  randomNum = Math.floor(Math.random() * 8);
-  }else{
+  } else {
  randomNum = Math.floor(Math.random() * 8);
   }
-});
-
+  
   var settings = [
   {
     title: "Date Night",
-    subtitle: "Things are getting awkward...",
+    subtitle: "",
     body: dateTopics[randomNum]
   },
-    
+      
   {
-    title: "Meeting the Parents",
-    subtitle: "Oh my god do they like me",
+    title: "Family",
+    subtitle: "",
     body: parentTopics[randomNum]
     
   },
   {
     title: "Party Time",
-    subtitle: "DDR anyone?",
+    subtitle: "",
     body: partyTopics[randomNum]
+  },
+  {
+    title: "Professional",
+    subtitle: "",
+    body: professionalTopics[randomNum]
   }
-];
-
-
+    
+];     
 //menu choosing stuff
 var settingsMenu = new UI.Menu({
   sections: [{
     title: 'Settings List',
-    items: settings
+    items: settings,
+
   }]
 });
+ 
+  settingsMenu.show(); 
 
-settingsMenu.show();
 
-
-// Add a click listener for select button click
+  // Add a click listener for select button click
 settingsMenu.on('select', function(event) {
+  
   // Show a card with clicked item details
- var detailCard = new UI.Card({
-   // title: settings[event.itemIndex].title,
-   // subtitle: settings[event.itemIndex].subtitle,
-    body: settings[event.itemIndex].body
-  });
 
+  var detailCard = new UI.Card({
+   body: settings[event.itemIndex].body
+});
   // Show the new Card
   detailCard.show();
+ 
 });
+   });
+  
